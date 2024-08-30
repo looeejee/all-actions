@@ -40,7 +40,7 @@ jobs:
       id: cache-primes-restore
       uses: actions/cache/restore@v4
       with:
-        path: $GITHUB_WORKSPACE
+        path: file.txt
         key: ${{ runner.os }}-myfile
 
     - name: Display structure of downloaded files

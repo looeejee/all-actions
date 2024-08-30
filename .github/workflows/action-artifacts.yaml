@@ -43,7 +43,6 @@ jobs:
         run: |
           pwd
           ls -R
-          tar -xvzf my-file.zip
           cat ./my-file.txt
           echo "Adding new line to file.txt!" >> file.txt
           cat ./my-file.txt
