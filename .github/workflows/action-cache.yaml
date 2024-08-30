@@ -33,18 +33,18 @@ jobs:
 
     steps:
     
-      - name: Checkout Repo
-        uses: actions/checkout@v4
+    - name: Checkout Repo
+      uses: actions/checkout@v4
 
-      - name: Restore cached File
-        id: cache-primes-restore
-        uses: actions/cache/restore@v4
-        with:
-            key: ${{ runner.os }}-myfile
+    - name: Restore cached File
+      id: cache-primes-restore
+      uses: actions/cache/restore@v4
+      with:
+        key: ${{ runner.os }}-myfile
 
-      - name: Display structure of downloaded files
-        run: |
-          ls -R
-          cat ./file.txt
-          echo "Adding new line to file.txt!" >> file.txt
-          cat ./file.txt
+    - name: Display structure of downloaded files
+      run: |
+        ls -R
+        cat ./file.txt
+        echo "Adding new line to file.txt!" >> file.txt
+        cat ./file.txt
