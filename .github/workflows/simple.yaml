@@ -14,4 +14,4 @@ jobs:
 
       - name: Runs a script
         run: |
-          echo "Hello From {{ github.actor}}" 
+          echo "Hello From ${{ github.repository.actor}}" 
