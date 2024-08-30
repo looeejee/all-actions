@@ -45,7 +45,8 @@ jobs:
 
     - name: Display structure of downloaded files
       run: |
+        pwd
         ls -R
-        cat ./file.txt
+        cat ./my-file.txt
         echo "Adding new line to file.txt!" >> file.txt
-        cat ./file.txt
+        cat ./my-file.txt
