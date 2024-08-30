@@ -1,0 +1,46 @@
+# pass artifacts between jobs using ulpoad-artifacts & download-artifacts actions
+
+name: Pass Artifcats Between jobs
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  job_1:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repo
+      uses: actions/checkout@v4
+
+    - name: Create artifact
+      run: |
+        echo "This file is created at $(date)" >> file.txt
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: my-file
+        path: ./file.txt
+
+  job_2:
+    runs-on: ubuntu-latest
+
+    steps:
+    
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+
+      - name: Download Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: my-file
+
+      - name: Display structure of downloaded files
+        run: |
+          ls -R
+          cat ./file.txt
+          echo "Adding new line to file.txt!" >> file.txt
+          cat ./file.txt

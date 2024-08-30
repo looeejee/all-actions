@@ -1,0 +1,50 @@
+# GitHub Action that uses actions/cache
+
+# pass artifacts between jobs using ulpoad-artifacts & download-artifacts actions
+
+name: Pass Artifcats Between jobs
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  job_1:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repo
+      uses: actions/checkout@v4
+
+    - name: Create artifact
+      run: |
+        echo "This file is created at $(date)" >> file.txt
+
+    - name: Save to Actions Cache
+      id: cache-primes
+      uses: actions/cache@v4
+      with:
+        path: file.txt
+        key: ${{ runner.os }}-myfile
+
+  job_2:
+    runs-on: ubuntu-latest
+
+    steps:
+    
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+
+      - name: Restore cached File
+        id: cache-primes-restore
+        uses: actions/cache/restore@v4
+        with:
+            key: ${{ runner.os }}-myfile
+
+      - name: Display structure of downloaded files
+        run: |
+          ls -R
+          cat ./file.txt
+          echo "Adding new line to file.txt!" >> file.txt
+          cat ./file.txt
