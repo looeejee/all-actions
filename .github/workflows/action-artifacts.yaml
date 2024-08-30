@@ -37,6 +37,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: my-file
+          path: $GITHUB_WORKSPACE
 
       - name: Display structure of downloaded files
         run: |

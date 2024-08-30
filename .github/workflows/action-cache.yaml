@@ -2,7 +2,7 @@
 
 # pass artifacts between jobs using ulpoad-artifacts & download-artifacts actions
 
-name: Pass Artifcats Between jobs
+name: Pass file Between jobs using GH Cache
 
 on:
   push:
@@ -40,6 +40,7 @@ jobs:
       id: cache-primes-restore
       uses: actions/cache/restore@v4
       with:
+        path: $GITHUB_WORKSPACE
         key: ${{ runner.os }}-myfile
 
     - name: Display structure of downloaded files
