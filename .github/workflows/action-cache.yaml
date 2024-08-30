@@ -30,7 +30,7 @@ jobs:
 
   job_2:
     runs-on: ubuntu-latest
-
+    needs: job_1
     steps:
     
     - name: Checkout Repo
@@ -46,7 +46,7 @@ jobs:
     - name: Display structure of downloaded files
       run: |
         pwd
-        ls -R
+        ls -lah
         cat ./my-file.txt
         echo "Adding new line to file.txt!" >> file.txt
         cat ./my-file.txt

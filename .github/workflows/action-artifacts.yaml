@@ -27,6 +27,7 @@ jobs:
 
   job_2:
     runs-on: ubuntu-latest
+    needs: job_1
 
     steps:
     
@@ -36,13 +37,13 @@ jobs:
       - name: Download Artifact
         uses: actions/download-artifact@v4
         with:
-          name: my-file.zip
-          path: $GITHUB_WORKSPACE
+          name: my-file
 
       - name: Display structure of downloaded files
         run: |
-          tar -xvzf my-file.zip
+          pwd
           ls -R
+          tar -xvzf my-file.zip
           cat ./my-file.txt
           echo "Adding new line to file.txt!" >> file.txt
           cat ./my-file.txt
